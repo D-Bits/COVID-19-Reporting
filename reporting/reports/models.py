@@ -13,4 +13,8 @@ class Summary(models.Model):
     NewRecovered = models.IntegerField()
     TotalRecovered = models.IntegerField()
 
+    def __str__(self):
+
+        return self.Country
+
 
