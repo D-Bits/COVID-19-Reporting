@@ -35,4 +35,4 @@ def data_etl(data_src, table, dropped_records):
 if __name__ == "__main__":
     
     # Load data from the summary API into summary table
-    data_etl(summary_json['Countries'], 'summary', [93, 98, 165, 171, 199, 219])
+    data_etl(summary_json['Countries'], 'reports_summary', [0, 93, 98, 165, 171, 199, 219])
