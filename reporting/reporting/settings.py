@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from dotenv import load_dotenv
+from psycopg2 import connect
+from sqlalchemy import create_engine
+from requests import get
 
 load_dotenv()
 
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Vancouver'
+TIME_ZONE = os.getenv("TIMEZONE")
 
 USE_I18N = True
 
@@ -126,3 +129,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+"""
+Settings for ETL
+"""
+# Establish db connection
+db_connection = connect(database=os.getenv("DB_NAME"), host=os.getenv("DB_HOST"), user=os.getenv("DB_USER"), password=os.getenv("DB_PASS"))
+
+# Create a SQLAlchemy engine to execute queries
+engine = create_engine(f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}")
+
+# Endpoint all available data, for all countries 
+summary = get("https://api.covid19api.com/summary")
+summary_json = summary.json()
+
+# Endpoint all confirmed U.S. cases
+usa_cases = get("https://api.covid19api.com/country/us/status/confirmed/live")
+usa_json = usa_cases.json()
