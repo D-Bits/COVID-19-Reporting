@@ -1,0 +1,29 @@
+{% extends "reports/base.html" %}
+
+{% block title %}Recoveries {% endblock %}
+
+{% block content %}
+
+    <h2>Deaths by Country</h2>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>New Recovered</th>
+                <th>Total Recovered</th>
+            </tr>
+        </thead>
+        {% for nation in countries %}
+            <tbody>
+                <tr>
+                <td>{{nation.Country}}</td>
+                <td>{{nation.NewRecovered}}</td>
+                <td>{{nation.TotalRecovered}}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+{% endblock %}

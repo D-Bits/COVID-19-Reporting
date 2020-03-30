@@ -40,6 +40,19 @@ class DeathsView(ListView):
         return Summary.objects.order_by('-TotalDeaths')
 
 
+# View for data about COVID-19 recoveries
+class RecoveriesView(ListView):
+
+    model = Summary
+    context_object_name = 'countries'
+    paginate_by = 25
+    template_name = "reports/recoveries.html"
+
+    def get_queryset(self):
+
+        return Summary.objects.order_by('-TotalRecovered')
+
+
 # For about page
 def about(request):
 
