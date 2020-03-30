@@ -24,6 +24,11 @@
                 </tr>
             </tbody>
         {% endfor %}
+        
     </table>
+
+    {% with total_recoveries=countries.TotalRecoveries %}
+        <p>{{total_recoveries}}</p>
+    {% endwith %}
 
 {% endblock %}
