@@ -4,61 +4,67 @@
 
 {% block content %}
 
-    
+    <div class="container">
+
         <h2>Global Data Summary</h2>
-                  
-        <table class="table table-striped">
-        <thead>
-            <tr>
-            <th>Country</th>
-            <th>New Confirmed</th>
-            <th>Total Confirmed</th>
-            <th>New Deaths</th>
-            <th>Total Deaths</th>
-            <th>New Recovered</th>
-            <th>Total Recovered</th>
-            </tr>
-        </thead>
-        {% for nation in countries %}
-        <tbody>
-            <tr>
-            <td>{{nation.Country}}</td>
-            <td>{{nation.NewConfirmed}}</td>
-            <td>{{nation.TotalConfirmed}}</td>
-            <td>{{nation.NewDeaths}}</td>
-            <td>{{nation.TotalDeaths}}</td>
-            <td>{{nation.NewRecovered}}</td>
-            <td>{{nation.TotalRecovered}}</td>
-            </tr>
-        </tbody>
-        {% endfor %}
-        </table>
-        
-        {% if is_paginated %}
-        <!-- Links to go to previous pages -->
-        {% if page_obj.has_previous %}
-            <!-- Link to first page  -->
-            <a class="btn btn-outline-info mb-4" href="?page=1">First Page</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
-        {% endif %}
-
-        <!-- Loop over all pages in paginator -->
-        {% for num in page_obj.paginator.page_range %}
-            {% if page_obj.number == num %}
-                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            <!-- if num is current within 3 previous page, print it out    -->
-            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}<
-                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                <th>Country</th>
+                <th>New Confirmed</th>
+                <th>Total Confirmed</th>
+                <th>New Deaths</th>
+                <th>Total Deaths</th>
+                <th>New Recovered</th>
+                <th>Total Recovered</th>
+                </tr>
+            </thead>
+            {% for nation in countries %}
+            <tbody>
+                <tr>
+                <td>{{nation.Country}}</td>
+                <td>{{nation.NewConfirmed}}</td>
+                <td>{{nation.TotalConfirmed}}</td>
+                <td>{{nation.NewDeaths}}</td>
+                <td>{{nation.TotalDeaths}}</td>
+                <td>{{nation.NewRecovered}}</td>
+                <td>{{nation.TotalRecovered}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            </table>
+            
+            {% if is_paginated %}
+            <!-- Links to go to previous pages -->
+            {% if page_obj.has_previous %}
+                <!-- Link to first page  -->
+                <a class="btn btn-outline-info mb-4" href="?page=1">First Page</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
             {% endif %}
-        {% endfor %}
 
-        <!-- Links to next page(s) -->
-        {% if page_obj.has_next %}
-            <!-- Link to first page  -->
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next Page</a>
-            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last Page</a>
+            <!-- Loop over all pages in paginator -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                <!-- if num is current within 3 previous page, print it out    -->
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Links to next page(s) -->
+            {% if page_obj.has_next %}
+                <!-- Link to first page  -->
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last Page</a>
+            {% endif %}
+
         {% endif %}
 
-    {% endif %}
-
+    </div>   
+    
 {% endblock %}
+ 
+       
+
