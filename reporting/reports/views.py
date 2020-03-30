@@ -7,5 +7,6 @@ from .models import Summary
 class IndexView(ListView):
 
     model = Summary
-    ordering = ['-Country']
-    template_name = "reports/base.html"
+    ordering = ['Country']
+    context_object_name = 'countries'
+    template_name = "reports/index.html"
