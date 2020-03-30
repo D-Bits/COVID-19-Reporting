@@ -3,3 +3,10 @@
     text-align: center;
     margin-top: 2.5%;
 }
+
+#footer {
+    background-color: #2d2d2d;
+    border-top: #1b83ac solid 5px;
+    text-align: center;
+    color: #ffffff;
+}
