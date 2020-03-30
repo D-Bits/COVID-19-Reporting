@@ -11,3 +11,16 @@ class IndexView(ListView):
     context_object_name = 'countries'
     paginate_by = 25
     template_name = "reports/index.html"
+
+
+# View for info about ongoing cases
+class CasesView(ListView):
+
+    model = Summary
+    context_object_name = 'countries'
+    paginate_by = 25
+    template_name = "reports/cases.html"
+
+    def get_queryset(self):
+
+        return Summary.objects.order_by('-TotalConfirmed')

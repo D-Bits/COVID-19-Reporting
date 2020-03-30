@@ -1,0 +1,27 @@
+{% extends "reports/base.html" %}
+
+{% block title %}Home {% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>New Confirmed</th>
+                <th>Total Confirmed</th>
+            </tr>
+        </thead>
+        {% for nation in countries %}
+            <tbody>
+                <tr>
+                <td>{{nation.Country}}</td>
+                <td>{{nation.NewConfirmed}}</td>
+                <td>{{nation.TotalConfirmed}}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>        
+
+{% endblock %}
