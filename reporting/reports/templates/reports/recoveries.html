@@ -15,6 +15,7 @@
                 <th>Total Recovered</th>
             </tr>
         </thead>
+        
         {% for nation in countries %}
             <tbody>
                 <tr>
@@ -27,8 +28,5 @@
         
     </table>
 
-    {% with total_recoveries=countries.TotalRecoveries %}
-        <p>{{total_recoveries}}</p>
-    {% endwith %}
 
 {% endblock %}

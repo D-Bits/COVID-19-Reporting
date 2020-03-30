@@ -50,7 +50,7 @@ class RecoveriesView(ListView):
 
     def get_queryset(self):
 
-        return Summary.objects.order_by('-TotalRecovered')
+        return Summary.objects.order_by('-TotalRecovered').aggregate(Sum('TotalRecovered'))
 
 
 # For about page
