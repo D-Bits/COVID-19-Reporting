@@ -9,4 +9,5 @@ class IndexView(ListView):
     model = Summary
     ordering = ['Country']
     context_object_name = 'countries'
+    paginate_by = 25
     template_name = "reports/index.html"
