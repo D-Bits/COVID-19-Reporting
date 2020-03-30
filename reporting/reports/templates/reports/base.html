@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'index' %}">Home</a>
@@ -30,10 +30,41 @@
     </ul>
 </nav>
 
-  {% block content %}
+  <div class="container">
+    {% block content %}
   
-  {% endblock %}  
+    {% endblock %}  
 
+    {% if is_paginated %}
+            
+                <!-- Links to go to previous pages -->
+                {% if page_obj.has_previous %}
+                    <!-- Link to first page  -->
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First Page</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
+                {% endif %}
+
+                <!-- Loop over all pages in paginator -->
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    <!-- if num is current within 3 previous page, print it out    -->
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Links to next page(s) -->
+                {% if page_obj.has_next %}
+                    <!-- Link to first page  -->
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last Page</a>
+                {% endif %}
+
+  {% endif %}
+
+  </div>
+  
 <footer class="py-3 bg-grey" id="footer">
 
   <p class="copyright">Copyright &copy; Dana Lockwood 2020</p>
