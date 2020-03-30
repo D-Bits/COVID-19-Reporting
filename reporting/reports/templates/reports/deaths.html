@@ -1,0 +1,29 @@
+{% extends "reports/base.html" %}
+
+{% block title %}Home {% endblock %}
+
+{% block content %}
+
+    <h2>Deaths by Country and Totals</h2>
+
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>New Deaths</th>
+                <th>Total Deaths</th>
+            </tr>
+        </thead>
+        {% for nation in countries %}
+            <tbody>
+                <tr>
+                <td>{{nation.Country}}</td>
+                <td>{{nation.NewDeaths}}</td>
+                <td>{{nation.TotalDeaths}}</td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+
+{% endblock %}

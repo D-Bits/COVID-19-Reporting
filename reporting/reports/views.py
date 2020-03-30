@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from django.db.models import Sum
 from .models import Summary
 
 
@@ -24,3 +25,22 @@ class CasesView(ListView):
     def get_queryset(self):
 
         return Summary.objects.order_by('-TotalConfirmed')
+
+
+# View for info about deaths from COVID-19
+class DeathsView(ListView):
+
+    model = Summary
+    context_object_name = 'countries'
+    paginate_by = 25
+    template_name = "reports/deaths.html"
+
+    def get_queryset(self):
+
+        return Summary.objects.order_by('-TotalDeaths')
+
+
+# For about page
+def about(request):
+
+    return render(request, 'reports/about.html')
